@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed({
             val intent = Intent(this, ContactList::class.java)
             startActivity(intent)
+            finish()
         }, 3000)
     }
 }

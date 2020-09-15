@@ -8,5 +8,5 @@
         android:menuCategory="container"
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always" />
+        app:showAsAction="always|collapseActionView" />
 </menu>
