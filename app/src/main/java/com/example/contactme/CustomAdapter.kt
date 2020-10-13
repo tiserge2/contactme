@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.TextView
 import java.util.*
 import kotlin.collections.ArrayList
@@ -14,8 +12,8 @@ import kotlin.collections.ArrayList
 
 class CustomAdapter(context: Context, var ressource: Int, var objects: ArrayList<CustomModel>):
     ArrayAdapter<CustomModel>(context, ressource, objects) {
-    lateinit var arrayList: ArrayList<CustomModel>
     var tempList = ArrayList(objects)
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var layoutInflater = LayoutInflater.from(context)
         var convertView = layoutInflater.inflate(ressource, null, false)
@@ -32,22 +30,24 @@ class CustomAdapter(context: Context, var ressource: Int, var objects: ArrayList
         return convertView
     }
 
+
+
     fun filter(charText: String) {
-        System.out.println("Now in filter")
+        System.out.println("Inside filter...")
+        System.out.println(("objects size: " + objects.size))
+        System.out.println(("tempList size: " + tempList.size))
+
         val charText = charText!!.toLowerCase(Locale.getDefault())
-        System.out.println("orig 0 list size: " + objects.size)
 
         objects.clear()
         if (charText.length == 0) {
             /*If Search query is Empty than we add all temp data into our main ArrayList
             We store Value in temp in Starting of Program.
             */
-            System.out.println("Now in filter, no string ")
             objects.addAll(tempList)
+            System.out.println(tempList.size)
         } else {
-            System.out.println("Now filtering")
-            System.out.println("Temp list size: " + tempList.size)
-            System.out.println("orig list size: " + objects.size)
+            System.out.println(("else, tempList size: " + tempList.size))
             for (i in 0..tempList.size - 1) {
                 /*
                 If our Search query is not empty than we Check Our search keyword in Temp ArrayList.
